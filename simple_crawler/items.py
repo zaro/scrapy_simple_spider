@@ -14,3 +14,5 @@ class ProductItem(scrapy.Item):
     brand = scrapy.Field()
     name = scrapy.Field()
     price = scrapy.Field()
+    url = scrapy.Field()
+    image_urls = scrapy.Field()

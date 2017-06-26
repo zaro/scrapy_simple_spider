@@ -14,12 +14,22 @@ class SportsdirectSpider(scrapy.Spider):
             brand = p.css('.productdescriptionbrand::text').extract_first()
             productName = p.css('.productdescriptionname::text').extract_first()
             price = p.css('.curprice::text').extract_first()
+            productUrl = p.css('a::attr(href)').extract_first()
             item = ProductItem()
             item['brand'] = brand
             item['name'] = productName
             item['price'] = price
-            yield item
+            item['url'] = response.urljoin(productUrl)
+            r = scrapy.Request(url=response.urljoin(productUrl), callback=self.parseProduct)
+            r.meta['item'] = item
+            yield r
         nextPageLinkSelector = response.css('.NextLink::attr("href")')
         if nextPageLinkSelector:
             nextPageLink = nextPageLinkSelector[0].extract()
             yield scrapy.Request(url=response.urljoin(nextPageLink))
+
+    def parseProduct(self, response):
+        item = response.meta['item']
+        imageUrls = response.css('a::attr(srczoom)').extract()
+        item['image_urls'] = imageUrls
+        yield item
