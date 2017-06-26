@@ -6,7 +6,10 @@ from ..items import ProductItem
 class SportsdirectSpider(scrapy.Spider):
     name = 'sportsdirect'
     allowed_domains = ['sportsdirect.com']
-    start_urls = ['http://www.sportsdirect.com/mens/mens-shirts']
+    start_urls = [
+    'http://www.sportsdirect.com/mens/mens-rugby-boots',
+    #'http://www.sportsdirect.com/mens/mens-shirts'
+    ]
 
     def parse(self, response):
         products = response.css('.s-productthumbbox')

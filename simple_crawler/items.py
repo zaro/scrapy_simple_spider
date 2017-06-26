@@ -16,3 +16,4 @@ class ProductItem(scrapy.Item):
     price = scrapy.Field()
     url = scrapy.Field()
     image_urls = scrapy.Field()
+    images = scrapy.Field()

@@ -68,6 +68,8 @@ ROBOTSTXT_OBEY = True
 #    'simple_crawler.pipelines.SimpleCrawlerPipeline': 300,
 #}
 
+ITEM_PIPELINES = {'scrapy.pipelines.images.ImagesPipeline': 1}
+
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
